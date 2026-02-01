@@ -1,0 +1,201 @@
+[gd_scene load_steps=10 format=3 uid="uid://cwk3tej3gl3c3"]
+
+[ext_resource type="PackedScene" uid="uid://bqgbcpkpx0c34" path="res://scene/player.tscn" id="1_v0l8b"]
+[ext_resource type="Script" uid="uid://bx08cgdpvki1b" path="res://scene/main.gd" id="1_wp4xf"]
+[ext_resource type="PackedScene" uid="uid://c4od1mferqc0q" path="res://map/Untitled.blend" id="2_v0l8b"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v0l8b"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_wp4xf"]
+sky_material = SubResource("ProceduralSkyMaterial_v0l8b")
+
+[sub_resource type="Environment" id="Environment_brvut"]
+background_mode = 2
+sky = SubResource("Sky_wp4xf")
+ambient_light_color = Color(0.999999, 0.978119, 0.483986, 1)
+ambient_light_energy = 9.0
+tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 0.0
+glow_strength = 0.8
+fog_enabled = true
+fog_light_energy = 0.65
+fog_sun_scatter = 0.54
+fog_density = 0.0401
+fog_sky_affect = 0.82
+fog_height_density = 0.0715
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.015
+volumetric_fog_albedo = Color(0.706511, 0.812202, 0.820171, 1)
+adjustment_enabled = true
+adjustment_brightness = 1.12
+adjustment_contrast = 5.52
+adjustment_saturation = 0.31
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_wp4xf"]
+diffuse_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wp4xf"]
+emission_enabled = true
+emission = Color(0.130516, 0.133352, 0.0221345, 1)
+emission_energy_multiplier = 1.73
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wp4xf"]
+size = Vector3(9, 6, 8)
+
+[node name="mian" type="Node3D"]
+script = ExtResource("1_wp4xf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.25, -0.408016, 0.901026, 0.147228, -0.289009, 0.0254987, -0.956987, -0.36564, 8.95357, -20.3484)
+light_color = Color(1, 1, 0.831373, 1)
+light_energy = 0.1
+light_indirect_energy = 10.745
+light_volumetric_fog_energy = 2.92
+light_angular_distance = 4.47
+light_specular = 8.885
+shadow_enabled = true
+shadow_bias = 0.735
+directional_shadow_max_distance = 1153.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_brvut")
+
+[node name="Untitled" parent="." instance=ExtResource("2_v0l8b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6171, 5951.33, 7.22938)
+
+[node name="player" parent="." instance=ExtResource("1_v0l8b")]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, -5.68456, -0.421254, 4.17099)
+
+[node name="house" type="Node3D" parent="."]
+
+[node name="floor" type="CSGBox3D" parent="house"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -3)
+use_collision = true
+size = Vector3(15, 1, 15)
+material = SubResource("ORMMaterial3D_wp4xf")
+
+[node name="roof" type="CSGBox3D" parent="house"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 8, -2)
+use_collision = true
+size = Vector3(15, 1, 15)
+material = SubResource("ORMMaterial3D_wp4xf")
+
+[node name="wall1" type="CSGBox3D" parent="house"]
+transform = Transform3D(1, 0, 0, 0, 11.88, 0, 0, 0, 1, -11, 3, -3)
+use_collision = true
+size = Vector3(1, 1, 15)
+material = SubResource("ORMMaterial3D_wp4xf")
+
+[node name="wall2" type="CSGBox3D" parent="house"]
+transform = Transform3D(1, 0, 0, 0, 11.88, 0, 0, 0, 1, 5, 3, -3)
+use_collision = true
+size = Vector3(1, 1, 15)
+material = SubResource("ORMMaterial3D_wp4xf")
+
+[node name="wall3" type="CSGBox3D" parent="house"]
+transform = Transform3D(1, 0, 0, 0, 11.88, 0, 0, 0, 1, -3, 3, 5)
+use_collision = true
+size = Vector3(17, 1, 1)
+material = SubResource("ORMMaterial3D_wp4xf")
+
+[node name="front" type="CSGBox3D" parent="house"]
+transform = Transform3D(0.4, 0, 0, 0, 11.88, 0, 0, 0, 1, 2, 3, -10)
+use_collision = true
+size = Vector3(17, 1, 1)
+material = SubResource("ORMMaterial3D_wp4xf")
+
+[node name="front2" type="CSGBox3D" parent="house"]
+transform = Transform3D(0.4, 0, 0, 0, 11.88, 0, 0, 0, 1, -8.4, 3, -10)
+use_collision = true
+size = Vector3(15, 1, 1)
+material = SubResource("ORMMaterial3D_wp4xf")
+
+[node name="front3" type="CSGBox3D" parent="house"]
+transform = Transform3D(0.4, 0, 0, 0, 11.88, 0, 0, 0, 1, -3.39849, 6.22695, -10.0057)
+use_collision = true
+size = Vector3(15, 0.462036, 1)
+material = SubResource("ORMMaterial3D_wp4xf")
+
+[node name="outside" type="Node3D" parent="."]
+
+[node name="floor" type="CSGBox3D" parent="outside"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9224, -2.27595, 1.58296)
+use_collision = true
+size = Vector3(101.06, 1, 72.8794)
+material = SubResource("StandardMaterial3D_wp4xf")
+
+[node name="parkor section 1" type="Node3D" parent="."]
+
+[node name="floor" type="CSGBox3D" parent="parkor section 1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -42)
+use_collision = true
+size = Vector3(15, 1, 15)
+material = SubResource("ORMMaterial3D_wp4xf")
+
+[node name="floor2" type="CSGBox3D" parent="parkor section 1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -55)
+use_collision = true
+size = Vector3(10, 1, 5)
+material = SubResource("ORMMaterial3D_wp4xf")
+
+[node name="floor3" type="CSGBox3D" parent="parkor section 1"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 4, -2, -67)
+use_collision = true
+size = Vector3(10, 1, 5)
+material = SubResource("ORMMaterial3D_wp4xf")
+
+[node name="floor4" type="CSGBox3D" parent="parkor section 1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -76)
+use_collision = true
+size = Vector3(10, 1, 5)
+material = SubResource("ORMMaterial3D_wp4xf")
+
+[node name="floor5" type="CSGBox3D" parent="parkor section 1"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -12.2635, -2, -86.0919)
+use_collision = true
+size = Vector3(10, 1, 5)
+material = SubResource("ORMMaterial3D_wp4xf")
+
+[node name="floor6" type="CSGBox3D" parent="parkor section 1"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -22.8701, -2, -96.6985)
+use_collision = true
+size = Vector3(14, 1, 5)
+material = SubResource("ORMMaterial3D_wp4xf")
+
+[node name="floor7" type="CSGBox3D" parent="parkor section 1"]
+transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, -22.3701, -2, -116.497)
+use_collision = true
+size = Vector3(14, 1, 16)
+material = SubResource("ORMMaterial3D_wp4xf")
+
+[node name="floor8" type="CSGBox3D" parent="parkor section 1"]
+transform = Transform3D(-5.16191e-08, -2.98023e-08, -1, -0.5, 0.866025, 0, 0.866026, 0.5, -5.96046e-08, -22.3701, 3.5, -132.828)
+use_collision = true
+size = Vector3(24, 1, 16)
+material = SubResource("ORMMaterial3D_wp4xf")
+
+[node name="floor9" type="CSGBox3D" parent="parkor section 1"]
+transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, -22.3701, 9.32314, -149.821)
+use_collision = true
+size = Vector3(14, 1, 16)
+material = SubResource("ORMMaterial3D_wp4xf")
+
+[node name="next area tp" type="Node3D" parent="."]
+
+[node name="Area3D" type="Area3D" parent="next area tp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.17, 10.8767, -151.231)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="next area tp/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, 0.5)
+shape = SubResource("BoxShape3D_wp4xf")
+
+[node name="floor10" type="CSGBox3D" parent="next area tp"]
+transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, -21.3788, 10.0421, -150.827)
+use_collision = true
+size = Vector3(8, 0.398926, 10)
+material = SubResource("ORMMaterial3D_wp4xf")
+
+[connection signal="body_shape_entered" from="next area tp/Area3D" to="." method="_on_area_3d_body_shape_entered"]
